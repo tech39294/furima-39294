@@ -6,14 +6,13 @@
 | ------------------ | ------  | ------------------------- |
 | nickname           | string  | null: false               |
 | email              | string  | null: false, unique: true |
-| password           | string  | null: false               |
+| encrypted_password | string  | null: false               |
 | familyname         | string  | null: false               |
 | firstname          | string  | null: false               |
 | familyname_kana    | string  | null: false               |
 | firstname_kana     | string  | null: false               |
-| birth_year_id      | integer | null: false               |
-| birth_month_id     | integer | null: false               |
-| birth_date_id      | integer | null: false               |
+| birth_date         | date    | null: false               |
+
 
 ### Association
 - has_many :items
@@ -26,7 +25,7 @@
 | ------------------ | ---------- | ------------------------------ |
 | user               | references | null: false, foreign_key: true |
 | item_name          | string     | null: false                    |
-| item_text          | string     | null: false                    |
+| item_text          | text       | null: false                    |
 | category_id        | integer    | null: false                    |
 | item_status_id     | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
