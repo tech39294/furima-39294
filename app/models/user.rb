@@ -13,12 +13,11 @@ class User < ApplicationRecord
 
   # 生年月日のバリデーション
   validates :birth_date, presence: true
-  
+
   # 半角英数字混合のバリデーション
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数を両方含む必要があります'}
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+  validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数を両方含む必要があります' }
 
   has_many :items
   has_many :orders
-
 end
