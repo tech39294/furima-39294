@@ -82,8 +82,15 @@ RSpec.describe Item, type: :model do
       it '価格が全角数字では出品できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to match_array('Price must be a number between ¥300 and ¥9,999,999')
+        expect(@item.errors.full_messages).to include('Price must be a number between ¥300 and ¥9,999,999')
       end
+
+      it 'userが紐づいていなければ出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
+
     end
   end
 end
