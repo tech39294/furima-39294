@@ -24,7 +24,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Item text can't be blank")
       end
-  
+
       it 'カテゴリーが選択されていなければ出品できない' do
         @item.category_id = 1
         @item.valid?
@@ -83,7 +83,7 @@ RSpec.describe Item, type: :model do
         @item.price = '３００'
         @item.valid?
         expect(@item.errors.full_messages).to match_array('Price must be a number between ¥300 and ¥9,999,999')
-      end   
+      end
     end
   end
 end
