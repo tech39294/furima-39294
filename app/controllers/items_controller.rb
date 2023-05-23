@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
   def index
-    # @items = Item.order("created_at DESC")
+    @items = Item.order("created_at DESC")
   end
 
   def new
@@ -12,10 +12,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
   
     if @item.save
-      # 保存に成功した場合の処理
       redirect_to root_path
     else
-      # 保存に失敗した場合の処理
       render :new
     end
   end
