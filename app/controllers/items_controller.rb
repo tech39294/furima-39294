@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
   end
-  
+
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
@@ -46,9 +46,8 @@ class ItemsController < ApplicationController
 
   def restrict_access
     @item = Item.find(params[:id])
-    if current_user != @item.user
-      redirect_to root_path
-    end
+    return unless current_user != @item.user
+
+    redirect_to root_path
   end
-  
 end
