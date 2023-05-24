@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :restrict_access, only: [:edit]
 
   def index
     @items = Item.order('created_at DESC')
@@ -42,4 +43,12 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:image, :item_name, :item_text, :category_id, :item_status_id, :delivery_charge_id,
                                  :delivery_area_id, :delivery_time_id, :price).merge(user_id: current_user.id)
   end
+
+  def restrict_access
+    @item = Item.find(params[:id])
+    if current_user != @item.user
+      redirect_to root_path
+    end
+  end
+  
 end
