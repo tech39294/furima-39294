@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def restrict_access
-    return unless current_user != @item.user|| @item.sold_out?
+    return unless current_user != @item.user || @item.sold_out?
 
     redirect_to root_path
   end
